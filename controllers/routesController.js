@@ -12,6 +12,18 @@ const subjectsPage = async (req, res) => {
     }
 };
 
+const oneSubject = async (req, res) => {
+    try {
+        const subjectmodel = await subjectModel.findOne(req.body);
+
+        return res.send(subjectmodel);
+    } catch(error){
+        console.log('Algo ocurrio:', error);
+        res.status(500).send({ error: error.message });
+        throw error;
+    }
+};
+
 const addSubject = async (req, res) => {
     try {
         const subjectmodel = await subjectModel.create(req.body);
@@ -25,7 +37,36 @@ const addSubject = async (req, res) => {
 
 }
 
+const modifySubject = async (req, res) => {
+    try {
+        const subjectmodel = await subjectModel.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
+
+        return res.send(subjectmodel);
+    } catch(error){
+        console.log('Algo ocurrio:', error);
+        res.status(500).send({ error: error.message });
+        throw error;
+    }
+
+}
+
+const deleteSubject = async (req, res) => {
+    try {
+        const subjectmodel = await subjectModel.findByIdAndDelete({ _id: req.params.id })
+
+        return res.send(subjectmodel);
+    } catch(error){
+        console.log('Algo ocurrio:', error);
+        res.status(500).send({ error: error.message });
+        throw error;
+    }
+
+}
+
 module.exports = {
     subjectsPage,
-    addSubject
+    oneSubject,
+    addSubject,
+    modifySubject,
+    deleteSubject
 }
