@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html{
+    min-height: 100%;
+}
+body{
+    background: #7474BF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #348AC7, #2626a9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+nav{
+    margin: auto;
+    margin-top: 15px;
+    padding: 5px;
+    width: 75%;
+    height: 40px;
+    display: block;
+    position: auto;
+    border-radius: 15px;
+    background: white;
+}
+.logo{
+    padding-top: 10px;
+    padding-left: 20px;
+    width: 90px;
+    height: 20px;
+}
+
+.btn-nav{
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 5px;
+    padding: 6px;
+    border-style: none;
+    border-radius: 8px;
+   
+}
+
+.iconos_nav{
+
+    color: blue;
+    font-size: 20px;
+    text-align: right;
+    margin-top: -25px;
+    margin-right: 15px; 
+}
+
+.title{
+    margin: 40px;
+    text-align: center;
+    color: white;
+    font-size:28px ;
+    font-weight: bolder;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.container-left{
+    display: flex;
+    margin-top: 10px;
+     
+}
+.cursos{
+    
+}
+
+
+.cursos img{
+
+    display: flex;
+    
+    margin-left: 250px;
+    margin-bottom: 15px;
+    width: 250px;
+    height: 120px; 
+    
+}
+
+.cursos h1{
+    color: white;
+    margin-left: 250px;
+    margin-bottom: 15px;
+}
+
+.cursos h2{
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-left: 280px;
+    margin-bottom: 15px;
+    
+    
+}
+
+.text-rigth{
+    
+    background: white;
+    border-radius: 30px;
+    float: right;
+    padding: 25px;
+    margin-top: 45px;
+    margin-right:170px ;
+    width: 500px;
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: justify;
+    
+}
+
+
+
+
+
+
