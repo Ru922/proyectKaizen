@@ -1,14 +1,9 @@
 const express = require('express');
+const { subjectsPage, addSubject } = require('../controllers/routesController');
 const router = express.Router();
 
-router.get('/', (req,res) => {
-    res.send('Pagina de inicio')
-});
-
-
-router.get('/profesores/materias', (req,res) => {
-    res.send('Agregado de materias')
-});
+router.get('/profesores/materias',subjectsPage);
+router.post('/profesores/materias',addSubject);
 
 
 module.exports = router
