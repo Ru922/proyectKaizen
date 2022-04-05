@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const morgan = require('morgan')
+const morgan = require('morgan');
 
 const routes = require('./routes/routes');
+
 require('dotenv').config();
 require('./database/db');
+
 morgan('tiny')
 
 const app = express();

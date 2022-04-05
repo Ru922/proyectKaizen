@@ -17,6 +17,13 @@ const Subject = new Schema({
     },
     schedule:{
         type: Date
+    },
+    description:{
+        type: String,
+        required: true
+    },
+    imgUrl:{
+        type: String
     }
 });
 
