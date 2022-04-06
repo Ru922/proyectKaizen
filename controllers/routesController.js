@@ -14,7 +14,7 @@ const subjectsPage = async (req, res) => {
 
 const oneSubject = async (req, res) => {
     try {
-        const subjectmodel = await subjectModel.findOne(req.body);
+        const subjectmodel = await subjectModel.findOne({_id : req.params.id});
 
         return res.send(subjectmodel);
     } catch(error){
@@ -53,7 +53,6 @@ const modifySubject = async (req, res) => {
 const deleteSubject = async (req, res) => {
     try {
         const subjectmodel = await subjectModel.findByIdAndDelete({ _id: req.params.id })
-
         return res.send(subjectmodel);
     } catch(error){
         console.log('Algo ocurrio:', error);
