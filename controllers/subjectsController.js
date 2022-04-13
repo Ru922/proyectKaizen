@@ -9,7 +9,7 @@ const subjectsPage = async (req, res) => {
         console.log('Algo ocurrio:', error);
         res.status(500).send({ error: error.message });
         throw error;
-    }
+    };
 };
 
 const oneSubject = async (req, res) => {
@@ -21,7 +21,7 @@ const oneSubject = async (req, res) => {
         console.log('Algo ocurrio:', error);
         res.status(500).send({ error: error.message });
         throw error;
-    }
+    };
 };
 
 const addSubject = async (req, res) => {
@@ -33,9 +33,9 @@ const addSubject = async (req, res) => {
         console.log('Algo ocurrio:', error);
         res.status(500).send({ error: error.message });
         throw error;
-    }
+    };
 
-}
+};
 
 const modifySubject = async (req, res) => {
     try {
@@ -46,9 +46,9 @@ const modifySubject = async (req, res) => {
         console.log('Algo ocurrio:', error);
         res.status(500).send({ error: error.message });
         throw error;
-    }
+    };
 
-}
+};
 
 const deleteSubject = async (req, res) => {
     try {
@@ -58,9 +58,9 @@ const deleteSubject = async (req, res) => {
         console.log('Algo ocurrio:', error);
         res.status(500).send({ error: error.message });
         throw error;
-    }
+    };
 
-}
+};
 
 module.exports = {
     subjectsPage,

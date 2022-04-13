@@ -1,35 +1,41 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-//const {Schema} = mongoose
-
-let crypto
-try {
-    crypto = require('crypto');
-  } catch (err) {
-    console.log('crypto support is disabled!');
-  }
+const {Schema} = mongoose
+      
 const bcryptjs = require('bcryptjs')
 const bcrypt = require('bcryptjs')
 //npm i -S bcryptjs
 //npm i -S crypto-md5
 
+let crypto
+    try {
+        crypto = require('crypto');
+      } catch (err) {
+    console.log('crypto support is disabled!');
+      }
+
+
 const UserSchema = new Schema ({
-        email: { 
-            type: String, 
-            unique: true, 
-            lowercase: true 
-        },
-        displayName: String,
-        avatar: String,
-        password: { 
-            type: String, 
-            select: false 
-        },
-        signupDate: { 
-            type: Date, 
-            default: Date.now() 
-        },
-        lastLogin: Date
+    email: { 
+        type: String, 
+        unique: true, 
+        lowercase: true 
+    },
+    displayName: {
+        type: String
+    },
+    avatar: {
+        type: String
+    },
+    password: { 
+        type: String, 
+        select: false 
+    },
+    signupDate: { 
+        type: Date, 
+        default: Date.now() 
+    },
+    lastLogin: {
+        type: Date}
 })
 
 UserSchema.pre('save', (next) => {
@@ -38,12 +44,13 @@ UserSchema.pre('save', (next) => {
 
     bcryptjs.hash(user.password, salt, null,(err,hash) => {
         if (err) return next(err)
+        
+    bcryptjs.hash(user.password, salt, null, (err, hash) => {
+        if (err) return next(err)
 
-        bcryptjs.hash(user.password, salt, null, (err, hash) => {
-            if (err) return next(err)
+        user.password = hash
 
-            user.password = hash
-            next()
+        next()
         })
     })
 })
@@ -54,7 +61,7 @@ UserSchema.methods.gravatar = function() {
     return `https://gravatar.com/gravatar/${md5}?s=200&d=retro`
 }
 
-module.exports = mongoose.model('User', UserSchema)
+const User = mongoose.model('User', UserSchema);
+module.exports = User
 
-//const User = mongoose.model('User',UserSchema);
-//module.exports = User;
+
