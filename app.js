@@ -5,7 +5,7 @@ const routes = require('./routes/apiRoutes');
 
 require('dotenv').config();
 require('./database/db');
-require('./models/user');
+require('./database/models/user');
 
 const app = express();
 

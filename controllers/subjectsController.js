@@ -1,4 +1,4 @@
-const subjectModel  = require ('../models/subjectsModel')
+const subjectModel  = require ('../database/models/subjectsModel')
 
 const subjectsPage = async (req, res) => {
     try {

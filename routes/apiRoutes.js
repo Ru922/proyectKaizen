@@ -22,4 +22,4 @@ router.put('/profesores/materias/:id', priceValidator, propertyValidator, descri
 router.delete('/profesores/materias/:id', deleteSubject);
 
 
-module.exports = router
+module.exports = router;
