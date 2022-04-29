@@ -35,22 +35,29 @@ const UserSchema = new Schema ({
         default: Date.now() 
     },
     lastLogin: {
-        type: Date}
+        type: Date,
+        default: Date.now()
+    }
 })
 
-UserSchema.pre('save', (next) => {
-    let user = this
-    if (!user.isModified('password')) return next()
+UserSchema.pre('save', function (next) {
+//UserSchema.pre('save', (next) => {
+//    let user = this
+    const user = this
+    const salt_factor = 5;
 
-    bcryptjs.hash(user.password, salt, null,(err,hash) => {
-        if (err) return next(err)
-        
-    bcryptjs.hash(user.password, salt, null, (err, hash) => {
-        if (err) return next(err)
-
-        user.password = hash
-
-        next()
+    if (!user.isModified('password')) return next();
+  
+    bcrypt.genSalt(salt_factor, function(err, salt) {
+      if (err) return next(err);
+  
+        bcryptjs.hash(user.password, salt, null,(err,hash) => {
+            if (err) return next(err)
+            bcryptjs.hash(user.password, salt, null, (err, hash) => {
+                if (err) return next(err)
+                user.password = hash
+                next()
+            })
         })
     })
 })
