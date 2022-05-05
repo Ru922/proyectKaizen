@@ -24,7 +24,7 @@ const propertyValidatorU = (req, res, next) => {
        return res.status(400).send({ error: `Unsupported properties: ${unsupportedProperties}.` });
     };
 
-    for (let property in req.body) {
+  /*  for (let property in req.body) {
         if ( property == 'email' ) {  //|| property == 'displayName' || property == 'password' ){
             ma = "ok";
         };
@@ -44,13 +44,13 @@ const propertyValidatorU = (req, res, next) => {
     if (pa == 'bad') {
         return res.status(400).send({ error: "Password is requiered" });
     };    
-    
+*/    
     next();
 };
 
 const nameValidatorU = (req, res, next) => {
     if(req.body.displayName && req.body.displayName.length > 20){
-        return res.status(400).send({ error: "The name is too long." });
+        return res.status(400).send({ error: "The name is too long!" });
     };
     
     next();
