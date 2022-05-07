@@ -9,12 +9,10 @@ const router = express.Router();
 router.get('/', (req,res)=>{res.send('hola, esta es la pagina principal')});
 
 //logIn
-router.get('/login', propertyValidatorU, nameValidatorU, getUser);
-router.get('/login/:email', emailUser);
-router.get('/login/:id', idValidatorU, oneUser);
+router.get('/login', propertyValidatorU, getUser);
+router.get('/login/:email', propertyValidatorU, emailUser);
+router.get('/login/:id', propertyValidatorU, idValidatorU, oneUser);
 router.post('/login', propertyValidatorU, nameValidatorU, passValidatorU, addUser);
-//router.put('/login');
-//router.delete('/login');
 
 //Profesores/materias
 router.get('/profesores/materias', subjectsPage);
