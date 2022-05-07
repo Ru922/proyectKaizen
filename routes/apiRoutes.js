@@ -1,5 +1,5 @@
 const express = require('express');
-const {getUser, oneUser, addUser} = require('../controllers/loginController')
+const {getUser, oneUser, addUser, emailUser} = require('../controllers/loginController')
 const { subjectsPage, addSubject, modifySubject, deleteSubject, oneSubject } = require('../controllers/subjectsController');
 const { priceValidator, propertyValidator, idValidator, profesorValidator, descriptionValidator } = require('../middlewares/subjectsMiddlewares');
 const { idValidatorU, propertyValidatorU, nameValidatorU, passValidatorU  } = require('../middlewares/loginMiddlewares');
@@ -10,6 +10,7 @@ router.get('/', (req,res)=>{res.send('hola, esta es la pagina principal')});
 
 //logIn
 router.get('/login', propertyValidatorU, nameValidatorU, getUser);
+router.get('/login/:email', emailUser);
 router.get('/login/:id', idValidatorU, oneUser);
 router.post('/login', propertyValidatorU, nameValidatorU, passValidatorU, addUser);
 //router.put('/login');

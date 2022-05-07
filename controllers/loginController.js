@@ -13,6 +13,19 @@ const getUser = async (req,res) => {
     };
 }
 
+const emailUser = async (req,res) => {
+    console.log('emailUser');
+    const _email = req.params.email;
+    try {
+        const usermodel = await User.findOne({ _email });
+        return res.send(usermodel);
+    } catch(error){
+        console.log('Algo ocurrio:', error);
+        res.status(500).send({ error: error.message });
+        throw error;
+    };
+}
+
 const oneUser = async (req, res) => {
     console.log('oneUser');
     try {
@@ -39,8 +52,10 @@ const addUser = async (req, res) => {
     };
 };
 
+
 module.exports = {
  getUser,
  addUser,
- oneUser
+ oneUser,
+ emailUser
 }
