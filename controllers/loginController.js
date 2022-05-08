@@ -2,9 +2,9 @@ const User = require('../database/models/user')
 
 const getUser = async (req,res) => {
     console.log('getUser');
-    const _email = req.body.email;
+    const _username = req.body.username;
     const _pass = req.body.password;
-    if ( _email == null && _pass == null ){
+    if ( _username == null && _pass == null ){
         try {
             const usermodel = await User.find({});
             return res.send(usermodel);
@@ -13,11 +13,11 @@ const getUser = async (req,res) => {
             return res.status(500).send({ error: error.message });
         };
     }
-    if ( !(_email == null) && !(_pass == null) ) {
+    if ( !(_username == null) && !(_pass == null) ) {
         try {
-            const usermodel = await User.findOne({ email: _email });
-            if( usermodel.email === _email && usermodel.password === _pass ) {
-                return res.status(200).send( _email);
+            const usermodel = await User.findOne({ username: _username });
+            if( usermodel.username === _username && usermodel.password === _pass ) {
+                return res.status(200).send( _username);
             } else {
                 return res.status(510).send( 'Nombre de usuario y contraseña incorrectos.' );
             }
@@ -29,12 +29,12 @@ const getUser = async (req,res) => {
     }
 }
 
-const emailUser = async (req,res) => {
-    console.log('emailUser');
-    const _email = req.body.email;
+const usernameUser = async (req,res) => {
+    console.log('usernameUser');
+    const _username = req.body.username;
     const _pass = req.body.password;
     try {
-        const usermodel = await User.findOne({ email: _email });
+        const usermodel = await User.findOne({ username: _username });
         return res.send(usermodel);
     } catch(error){
         console.log('Algo ocurrio:', error);
@@ -55,12 +55,12 @@ const oneUser = async (req, res) => {
 
 const addUser = async (req, res) => {
     console.log('addUser');
-    const _email = req.params.email;
+    const _username = req.params.username;
     try {
-        const usermodel = await User.findOne({ _email });
+        const usermodel = await User.findOne({ _username });
         if( usermodel.length > 0 ){
             // ya existe
-            return(res.status(500).send({ error: 'El correo ya existe' }));
+            return(res.status(500).send({ error: 'User already exists' }));
         };
 
     } catch(error){
@@ -83,5 +83,5 @@ module.exports = {
  getUser,
  addUser,
  oneUser,
- emailUser
+ usernameUser
 }

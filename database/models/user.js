@@ -15,18 +15,30 @@ let crypto
 
 
 const UserSchema = new Schema ({
+    username: { 
+        type: String, 
+        unique: true,
+        required: true
+    },
     email: { 
         type: String, 
-        unique: true, 
+        unique: true,
+        required: true,
         lowercase: true 
     },
-    displayName: {
+    name: {
+        required: true,
+        type: String
+    },
+    lastname: {
+        required: true,
         type: String
     },
     avatar: {
         type: String
     },
-    password: { 
+    password: {
+        required: true,
         type: String
        // select: false 
     },
@@ -39,11 +51,11 @@ const UserSchema = new Schema ({
         default: Date.now()
     }
 })
-
+/*
 UserSchema.pre('save', function (next) {
 //UserSchema.pre('save', (next) => {
-//    let user = this
-    const user = this
+    let user = this
+//    const user = this
     const salt_factor = 5;
 
     if (!user.isModified('password')) return next();
@@ -61,10 +73,12 @@ UserSchema.pre('save', function (next) {
         })
     })
 })
-UserSchema.methods.gravatar = function() {
-    if (!this.email) return `https://gravatar.com/gravatar/?s=200&d=retro`
+*/
 
-    const md5 = crypto.createHash('md5').update(this.email).digest('hex')
+UserSchema.methods.gravatar = function() {
+    if (!this.name) return `https://gravatar.com/gravatar/?s=200&d=retro`
+
+    const md5 = crypto.createHash('md5').update(this.name).digest('hex')
     return `https://gravatar.com/gravatar/${md5}?s=200&d=retro`
 }
 

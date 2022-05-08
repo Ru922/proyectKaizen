@@ -10,7 +10,7 @@ const idValidatorU = (req, res, next) => {
 const propertyValidatorU = (req, res, next) => {
     const unsupportedProperties = []; 
     for (let property in req.body) {
-        if ( property !== 'email' && property !== 'displayName' && property !== 'avatar' && property !== 'password' ){
+        if ( property !== 'email' && property !== 'name' && property !== 'avatar' && property !== 'password' && property !== 'username' && property !== 'lastname' ){
             unsupportedProperties.push(property);
         };
     };
@@ -23,26 +23,61 @@ const propertyValidatorU = (req, res, next) => {
 const nameValidatorU = (req, res, next) => {
     let na = "bad";
     for (let property in req.body) {
-        if ( property == 'displayName' ) {  //|| property == 'displayName' || property == 'password' ){
+        if ( property == 'name' ) {
             na = "ok";
         };
     };
     if (na == 'bad') {
-        return res.status(400).send({ error: "User Name is requiered" });
+        return res.status(400).send({ error: "Name is requiered" });
     };    
 
-    if(req.body.displayName && req.body.displayName.length > 21){
+    if(req.body.nombre && req.body.nombre.length > 31){
         return res.status(400).send({ error: "The name is too long." });
     };
     
     next();
 }; 
 
+const lastnameValidatorU = (req, res, next) => {
+    let na = "bad";
+    for (let property in req.body) {
+        if ( property == 'lastname' ) {
+            na = "ok";
+        };
+    };
+    if (na == 'bad') {
+        return res.status(400).send({ error: "Last name is requiered" });
+    };    
+
+    if(req.body.nombre && req.body.nombre.length > 41){
+        return res.status(400).send({ error: "The Last name is too long." });
+    };
+    
+    next();
+}; 
+
+/*
+const usernameValidatorU = async (req,res, next) => {
+    console.log('usernameValidator');
+    let ma = "bad";
+    for (let property in req.body) {
+        if ( property == 'username' ) {
+            ma = "ok";
+            console.log('ok');
+        };
+    };
+    if (ma == 'bad') {
+        return res.status(400).send({ error: "User name is requiered" });
+    };
+    next();
+}; 
+*/
+/*
 const emailValidatorU = async (req,res, next) => {
     console.log('emailValidator');
     let ma = "bad";
     for (let property in req.body) {
-        if ( property == 'email' ) {  //|| property == 'displayName' || property == 'password' ){
+        if ( property == 'email' ) {
             ma = "ok";
             console.log('ok');
         };
@@ -52,13 +87,12 @@ const emailValidatorU = async (req,res, next) => {
     };
     next();
 }; 
-
-
+*/
 
 const passValidatorU = (req, res, next) => {
     let pa = "bad";
     for (let property in req.body) {
-        if ( property == 'password' ) {  //|| property == 'displayName' || property == 'password' ){
+        if ( property == 'password' ) {
             pa = "ok";
         };
     };
@@ -77,14 +111,10 @@ const passValidatorU = (req, res, next) => {
             cuentaMin = cuentaMin + 1;
         };    
     };
- console.log(`Mayusculas: ${cuentaMay}.`);
- console.log(`Minusculas: ${cuentaMin}.`);
     if ( (cuentaMay == 0) || (cuentaMin == 0) ) {
         return res.status(400).send({ error: "There must be at least one uppercase character and one lowercase character." });
     };
-    
     next();
 }; 
 
-//module.exports = { idValidatorU, propertyValidatorU, nameValidatorU, passValidatorU };
-module.exports = { idValidatorU, propertyValidatorU, nameValidatorU, passValidatorU, emailValidatorU };
+module.exports = { idValidatorU, propertyValidatorU, nameValidatorU, passValidatorU, lastnameValidatorU };
