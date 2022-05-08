@@ -27,8 +27,8 @@ const UserSchema = new Schema ({
         type: String
     },
     password: { 
-        type: String, 
-        select: false 
+        type: String
+       // select: false 
     },
     signupDate: { 
         type: Date, 

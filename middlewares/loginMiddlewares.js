@@ -17,15 +17,13 @@ const propertyValidatorU = (req, res, next) => {
     if(unsupportedProperties.length > 0) {
        return res.status(400).send({ error: `Unsupported properties: ${unsupportedProperties}.` });
     };
-
     next();
 };
 
 const nameValidatorU = (req, res, next) => {
-    const requiredProperties = [];
     let na = "bad";
     for (let property in req.body) {
-        if ( property == 'password' ) {  //|| property == 'displayName' || property == 'password' ){
+        if ( property == 'displayName' ) {  //|| property == 'displayName' || property == 'password' ){
             na = "ok";
         };
     };
@@ -40,8 +38,24 @@ const nameValidatorU = (req, res, next) => {
     next();
 }; 
 
+const emailValidatorU = async (req,res, next) => {
+    console.log('emailValidator');
+    let ma = "bad";
+    for (let property in req.body) {
+        if ( property == 'email' ) {  //|| property == 'displayName' || property == 'password' ){
+            ma = "ok";
+            console.log('ok');
+        };
+    };
+    if (ma == 'bad') {
+        return res.status(400).send({ error: "Email is requiered" });
+    };
+    next();
+}; 
+
+
+
 const passValidatorU = (req, res, next) => {
-    const requiredProperties = [];
     let pa = "bad";
     for (let property in req.body) {
         if ( property == 'password' ) {  //|| property == 'displayName' || property == 'password' ){
@@ -73,4 +87,4 @@ const passValidatorU = (req, res, next) => {
 }; 
 
 //module.exports = { idValidatorU, propertyValidatorU, nameValidatorU, passValidatorU };
-module.exports = { idValidatorU, propertyValidatorU, nameValidatorU, passValidatorU };
+module.exports = { idValidatorU, propertyValidatorU, nameValidatorU, passValidatorU, emailValidatorU };
