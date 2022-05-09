@@ -11,7 +11,7 @@ router.get('/', (req,res)=>{res.send('hola, esta es la pagina principal')});
 //logIn
 router.get('/login', propertyValidatorU, getUser);
 //router.get('/login/', propertyValidatorU, usernameUser);
-router.post('/login', propertyValidatorU, usernameUser);
+router.post('/login', propertyValidatorU, addUser);
 router.get('/login/:id', propertyValidatorU, idValidatorU, oneUser);
 router.post('/login', propertyValidatorU,lastnameValidatorU, nameValidatorU, passValidatorU, addUser);
 
