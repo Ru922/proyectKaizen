@@ -66,7 +66,8 @@ const addUser = async (req, res) => {
         try {
             const usermodel = await User.findOne({ username: _username });
             if( usermodel.username === _username && usermodel.password === _pass ) {
-                return res.status(200).send( _username);
+                //return res.status(200).send( _username);
+                return res.send(usermodel);
             } else {
                 return res.status(510).send( 'Nombre de usuario y contraseña incorrectos.' );
             }
