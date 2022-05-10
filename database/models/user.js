@@ -39,8 +39,8 @@ const UserSchema = new Schema ({
     },
     password: {
         required: true,
-        type: String
-       // select: false 
+        type: String,
+        select: false 
     },
     signupDate: { 
         type: Date, 
